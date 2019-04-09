@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+   
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/bootstrap.min.css">
+
+
+    <title>Cong Minh Store</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  
+  <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/universal/2-0-1/vendor/font-awesome/css/font-awesome.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  
+    
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    
+    
+    <div id="root"></div>
+    
+    
+
+    
+
+    
+    
+  </body>
+</html>
+
+<script>
+
+// For 2 View (Grid and List)
+  $(document).ready(function() {
+            $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+            $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+        });
+
+
+
+
+// For side menu
+
+
+$(document).ready(function () {
+  var trigger = $('.hamburger'),
+      overlay = $('.overlay'),
+     isClosed = false;
+
+    trigger.click(function () {
+      hamburger_cross();      
+    });
+
+    function hamburger_cross() {
+
+      if (isClosed == true) {          
+        overlay.hide();
+        trigger.removeClass('is-open');
+        trigger.addClass('is-closed');
+        isClosed = false;
+      } else {   
+        overlay.show();
+        trigger.removeClass('is-closed');
+        trigger.addClass('is-open');
+        isClosed = true;
+      }
+  }
+  
+  $('[data-toggle="offcanvas"]').click(function () {
+        $('#wrapper').toggleClass('toggled');
+  });  
+});
+
+$(document).ready(function(){
+            //First Name can not be blank
+            $('#contact_firstname').on('input',function(){
+                var input=$(this);
+                var is_name=input.val();
+                if(is_name){input.removeClass("invalid").addClass("valid");}
+                else{input.removeClass("valid").addClass("invalid");}
+            });
+
+            // Last name can not be blank
+            $('#contact_lname').on('input',function(){
+                var input=$(this);
+                var is_name=input.val();
+                if(is_name){input.removeClass("invalid").addClass("valid");}
+                else{input.removeClass("valid").addClass("invalid");}
+            });
+
+            //Gender Check
+            $('#contact_gender').on('input',function(){
+                var input=$(this);
+                var is_name=input.val();
+                if(is_name){input.removeClass("invalid").addClass("valid");}
+                else{input.removeClass("valid").addClass("invalid");}
+            });
+
+
+            // An real Email is required
+            $('#contact_email').on('input', function() {
+				var input=$(this);
+				var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+				var is_email=re.test(input.val());
+				if(is_email){input.removeClass("invalid").addClass("valid");}
+				else{input.removeClass("valid").addClass("invalid");}
+			});
+
+            // An message is required
+            $('#contact_message').keyup(function(event) {
+				var input=$(this);
+				var message=$(this).val();
+				console.log(message);
+				if(message){input.removeClass("invalid").addClass("valid");}
+				else{input.removeClass("valid").addClass("invalid");}	
+			});
+            $('#contact_profession').on('input',function(){
+                var input=$(this);
+                var is_name=input.val();
+                if(is_name){input.removeClass("invalid").addClass("valid");}
+                else{input.removeClass("valid").addClass("invalid");}
+            });
+
+            /*$cf = $('#phonenumber');
+            $cf.blur(function(e){
+                phone = $(this).val();
+                phone = phone.replace(/[^0-9]/g,'');
+                if (phone.length != 10)
+                {
+                    alert('Phone number must be 10 digits.');
+                    $('#phonenumber').val('');
+                    $('#phonenumber').focus();
+                }
+            }); */
+            $('#contact_pnumber'). attr("maxlength","11"). on('input', function() {
+				var input=$(this);
+				var re =/([0-9]{10})$/;
+
+				var is_phone=re.test(input.val());
+				if(is_phone ){input.removeClass("invalid").addClass("valid");}
+				else{input.removeClass("valid").addClass("invalid");}
+			});
+
+            //After Form is Submitted
+        $("#contact_sendit ").click(function(event){
+				var form_data=$("#contact").serializeArray();
+				var error_free=true;
+				for (var input in form_data){
+					var element=$("#contact_"+form_data[input]['name']);
+					var valid=element.hasClass("valid");
+					var error_element=$("span", element.parent());
+					if (!valid){error_element.removeClass("error").addClass("error_show"); error_free=false;}
+					else{error_element.removeClass("error_show").addClass("error");}
+				}
+				if (!error_free){
+					event.preventDefault(); 
+				}
+				else{
+					alert('No errors: Form will be submitted');
+				}
+		});
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+</script>
